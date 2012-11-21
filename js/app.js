@@ -8,10 +8,10 @@ var ds = new Miso.Dataset({
 });
 
 
-$(".thumbnails").on("click", "li", function(event) {
+/* Modal handler */
 
-  var id = $(this).data('id');
- 
+$(".thumbnails").on("click", "li", function(event) {
+  var id = $(this).data('id'); 
   ds.reset();  
   var data = ds.fetch({ 
     success : function() {
@@ -30,27 +30,25 @@ $(".thumbnails").on("click", "li", function(event) {
 });
 
 
-showResults();
+/* Type filter handler */
 
 $("#types a").toggle(function () {
-  showResults($(this).data('type'));
+  renderResults($(this).data('type'));
   $(this).parent().parent().find('li').removeClass('active');
   $(this).parent().addClass('active');
 }, function () {
-  showResults();
+  renderResults();
   $(this).parent().parent().find('li').removeClass('active');
 });
 
 
-function showResults(type) {
+/*  Results rendering */
 
+function renderResults(type) {
   var rows = []
-
   ds.reset();  
-
   ds.fetch({ 
-    success : function() {
-     
+    success : function() {    
       ds.rows(function(row) {
           return (type ? row.type == type : true);
       })
@@ -64,6 +62,8 @@ function showResults(type) {
       });
     }
   })
-
-
 };
+
+/* Main app */
+
+renderResults();
