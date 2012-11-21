@@ -1,8 +1,3 @@
-
-
-
-$(".thumbnails").on("click", "li", function(event) {
-
 var ds = new Miso.Dataset({
   importer : Miso.Dataset.Importers.GoogleSpreadsheet,
   parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
@@ -12,8 +7,12 @@ var ds = new Miso.Dataset({
   sync: true
 });
 
+
+$(".thumbnails").on("click", "li", function(event) {
+
   var id = $(this).data('id');
-    
+ 
+  ds.reset();  
   var data = ds.fetch({ 
     success : function() {
       var data = this.rows(function(row) {
@@ -45,17 +44,9 @@ $("#types a").toggle(function () {
 
 function showResults(type) {
 
-  var ds = new Miso.Dataset({
-    importer : Miso.Dataset.Importers.GoogleSpreadsheet,
-    parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-    key : "0AjuiYlqIySuFdDdUYlY1YkNzOWtJSWxVOWwyTS0zWUE",
-    worksheet : "1",
-    fast : true,
-    sync: true
-  });
-
-
   var rows = []
+
+  ds.reset();  
 
   ds.fetch({ 
     success : function() {
