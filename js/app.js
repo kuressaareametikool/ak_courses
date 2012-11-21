@@ -29,8 +29,8 @@ $(".thumbnails").on("click", "li", function(event) {
 
 /* Modal click handler */
 
-$("#modal").on("hide", function(event) {
-  var id = $(this).find(".modal-footer a").data("id"); 
+$("#modal").on("click", 'a', function(event) {
+  var id = $(this).data("id"); 
   ds.reset();  
   ds.fetch({ 
     success : function() {
