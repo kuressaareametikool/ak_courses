@@ -24,11 +24,14 @@ function showResults(type) {
 
   ds.fetch({ 
     success : function() {
-
-
-      ds.each(function(row, rowIndex) {
-        console.log(row);
-          rows.push(row);
+     
+      ds.where({
+        rows: function(row) {
+          return (type ? row.type == type : true);
+        }
+      })
+      .each(function(row, rowIndex) {
+        rows.push(row);
       });
 
       $.Mustache.load('templates/thumbnail.mustache')
