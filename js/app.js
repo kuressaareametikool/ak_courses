@@ -51,10 +51,8 @@ function showResults(type) {
   ds.fetch({ 
     success : function() {
      
-      ds.where({
-        rows: function(row) {
+      ds.rows(function(row) {
           return (type ? row.type == type : true);
-        }
       })
       .each(function(row, rowIndex) {
         rows.push(row);
