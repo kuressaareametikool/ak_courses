@@ -7,8 +7,9 @@ var ds = new Miso.Dataset({
   sync: true
 });
 
-
+    
 /* Modal handler */
+
 
 $(".thumbnails").on("click", "li", function(event) {
   var id = $(this).data('id'); 
@@ -26,6 +27,9 @@ $(".thumbnails").on("click", "li", function(event) {
       }
   });   
 });
+
+
+
 
 /* Modal click handler */
 
@@ -76,6 +80,7 @@ function renderResults(type) {
       $.Mustache.load('templates/thumbnail.mustache')
           .done(function () {
             $('.thumbnails').empty().mustache('thumbnail', rows);
+            
       });
     }
   })
@@ -83,4 +88,4 @@ function renderResults(type) {
 
 /* Main app */
 
-renderResults();
+  renderResults();
