@@ -22,11 +22,28 @@ $(".thumbnails").on("click", "li", function(event) {
       $.Mustache.load('templates/modal.mustache')
         .done(function () {
           $('#modal').empty().mustache('modal', data).modal('show');        
-        })    
-      
+        })          
       }
-  });
-    
+  });   
+});
+
+/* Modal click handler */
+
+$("#modal").on("hide", function(event) {
+  var id = $(this).find(".modal-footer a").data("id"); 
+  ds.reset();  
+  ds.fetch({ 
+    success : function() {
+      var data = ds.rows(function(row) {
+        return row.id === id;
+      }).rowByPosition(0);
+      $.Mustache.load('templates/course.mustache')
+        .done(function () {
+          $('.span8').mustache('course', data, {method: "html"});        
+          $('.span3').empty();        
+        })          
+      }
+  });   
 });
 
 
