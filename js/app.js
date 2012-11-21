@@ -12,21 +12,31 @@ $("#types a").toggle(function () {
 
 function showResults(type) {
 
-$.getJSON('data/data.json', function(data) {
+  var ds = new Miso.Dataset({
+    importer : Miso.Dataset.Importers.GoogleSpreadsheet,
+    parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
+    key : "0AjuiYlqIySuFdDdUYlY1YkNzOWtJSWxVOWwyTS0zWUE",
+    worksheet : "1",
+    fast : true
+  });
 
-$.Mustache.load('templates/thumbnail.mustache')
-    .done(function () {
-      if (type) { 
-      var filteredData = [];
-      for (var i=0; i < data.length; i++) {
-        if (data[i].type == type) {
-          filteredData.push(data[i]);
-        }
-      }
-      console.log(filteredData);
-      
-      }
-      $('.thumbnails').empty().mustache('thumbnail', (filteredData || data));
-});
-});
+  var rows = []
+
+  ds.fetch({ 
+    success : function() {
+
+
+      ds.each(function(row, rowIndex) {
+        console.log(row);
+          rows.push(row);
+      });
+
+      $.Mustache.load('templates/thumbnail.mustache')
+          .done(function () {
+            $('.thumbnails').empty().mustache('thumbnail', rows);
+      });
+    }
+  })
+
+
 };
