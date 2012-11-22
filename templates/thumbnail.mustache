@@ -1,7 +1,8 @@
 <script id="thumbnail" type="text/html">
-  <li class="span2" data-id="{{id}}" data-title="{{title}}" data-description_short="{{description_short}}">
+  <li class="span2" data-id="{{id}}">
     <div class="thumbnail">
-      <img src="{{img_small}}" alt="">
+      <div class="image"><img src="{{img_small}}" alt=""></div>
+      <div class="description_short hide"><span>{{description_short}}</span></div>
       <h5>{{title}}</h5>
       {{education}}<br />
       {{type}}

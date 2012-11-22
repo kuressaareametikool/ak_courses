@@ -22,6 +22,13 @@ $(".thumbnails").on("click", "li", function(event) {
     })   
 });
 
+$(".thumbnails").on("mouseover", "li", function(event) {
+   $(this).find(".description_short").removeClass('hide')
+});
+
+$(".thumbnails").on("mouseout", "li", function(event) {
+  $(this).find(".description_short").addClass('hide')
+});
 
 /* Type filter handler */
 
@@ -39,14 +46,14 @@ $("#types a").toggle(function () {
 
 function renderResults(type) {
   var rows = []
+  ds.reset();
   ds.fetch({ 
     success : function() {
-      console.log(ds.columnNames());
       ds.rows(function(row) {
           return (type ? (row.type == type || row.education == type) : true) && row.title;
       })
       .each(function(row, rowIndex) { 
-        rows.push(row);console.log(row);
+        rows.push(row);
       });
       $('.thumbnails').empty();
       m('.thumbnails', 'thumbnail', rows, 'append');
