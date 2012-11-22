@@ -19,16 +19,18 @@ $(".thumbnails").on("click", "li", function(event) {
       var data = this.rows(function(row) {
         return row.id === id;
       }).rowByPosition(0);
-      
-      $.Mustache.load('templates/modal.mustache')
-        .done(function () {
-          $('#modal').empty().mustache('modal', data).modal('show');        
-        })          
+
+      if ($.url().param("v") == 1) {
+        m('.span8','course', data);
+        $('.span3').empty();                
+       } else {
+          $("#modal").empty()
+          m('#modal', 'modal', data)
+          $("#modal").modal('show');        
+      }          
       }
-  });   
+    })   
 });
-
-
 
 
 /* Modal click handler */
@@ -41,11 +43,7 @@ $("#modal").on("click", 'a', function(event) {
       var data = ds.rows(function(row) {
         return row.id === id;
       }).rowByPosition(0);
-      $.Mustache.load('templates/course.mustache')
-        .done(function () {
-          $('.span8').mustache('course', data, {method: "html"});        
-          $('.span3').empty();        
-        })          
+        m('.span8', 'course', data);
       }
   });   
 });
@@ -76,15 +74,19 @@ function renderResults(type) {
       .each(function(row, rowIndex) {
         rows.push(row);
       });
+      $('.thumbnails').empty();
+      m('.thumbnails', 'thumbnail', rows, 'append');
 
-      $.Mustache.load('templates/thumbnail.mustache')
-          .done(function () {
-            $('.thumbnails').empty().mustache('thumbnail', rows);
-            
-      });
     }
   })
 };
+
+function m(selector, template, data, method) {
+  $.Mustache.load('templates/' + template + '.mustache')
+     .done(function () {
+       $(selector).mustache(template, data, {method: (method || "html")});        
+     })           
+}
 
 /* Main app */
 

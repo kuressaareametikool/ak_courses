@@ -7,6 +7,7 @@
       "mustache": "github:janl/mustache.js/0.7.0",
       "jquery-Mustache": "github:jonnyreeves/jquery-Mustache/v0.2.3",
       "miso.ds.deps.ie.0.4.1": "http://cloud.github.com/downloads/misoproject/dataset/miso.ds.deps.ie.0.4.1.js",
+      "jQuery-URL-Parser": "github:allmarkedup/jQuery-URL-Parser/v2.2.1"
     }
   }
 }
