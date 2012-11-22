@@ -68,10 +68,10 @@ function renderResults(type) {
   ds.reset();  
   ds.fetch({ 
     success : function() {    
-      ds.rows(function(row) {
+      ds.rows(function(row) { console.log(type)
           return (type ? row.type == type : true);
       })
-      .each(function(row, rowIndex) {
+      .each(function(row, rowIndex) { 
         rows.push(row);
       });
       $('.thumbnails').empty();
