@@ -4,9 +4,8 @@ var ds = new Miso.Dataset({
   key : "0AjuiYlqIySuFdDdUYlY1YkNzOWtJSWxVOWwyTS0zWUE",
   worksheet : "1",
   fast : true,
-  sync: true
-});
-
+  sync: true,
+})
     
 /* Thumbnail handler */
 
@@ -40,14 +39,14 @@ $("#types a").toggle(function () {
 
 function renderResults(type) {
   var rows = []
-  ds.reset();  
   ds.fetch({ 
-    success : function() {    
+    success : function() {
+      console.log(ds.columnNames());
       ds.rows(function(row) {
-          return (type ? (row.type == type || row.education == type) : true);
+          return (type ? (row.type == type || row.education == type) : true) && row.title;
       })
       .each(function(row, rowIndex) { 
-        rows.push(row);
+        rows.push(row);console.log(row);
       });
       $('.thumbnails').empty();
       m('.thumbnails', 'thumbnail', rows, 'append');
