@@ -8,8 +8,7 @@ var ds = new Miso.Dataset({
 });
 
     
-/* Modal handler */
-
+/* Thumbnail handler */
 
 $(".thumbnails").on("click", "li", function(event) {
   var id = $(this).data('id'); 
@@ -19,33 +18,10 @@ $(".thumbnails").on("click", "li", function(event) {
       var data = this.rows(function(row) {
         return row.id === id;
       }).rowByPosition(0);
-
-      if ($.url().param("v") == 1) {
         m('.span8','course', data);
         $('.span3').empty();                
-       } else {
-          $("#modal").empty()
-          m('#modal', 'modal', data)
-          $("#modal").modal('show');        
-      }          
       }
     })   
-});
-
-
-/* Modal click handler */
-
-$("#modal").on("click", 'a', function(event) {
-  var id = $(this).data("id"); 
-  ds.reset();  
-  ds.fetch({ 
-    success : function() {
-      var data = ds.rows(function(row) {
-        return row.id === id;
-      }).rowByPosition(0);
-        m('.span8', 'course', data);
-      }
-  });   
 });
 
 
@@ -89,5 +65,4 @@ function m(selector, template, data, method) {
 }
 
 /* Main app */
-
-  renderResults();
+renderResults();
