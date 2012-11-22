@@ -18,8 +18,7 @@ $(".thumbnails").on("click", "li", function(event) {
       var data = this.rows(function(row) {
         return row.id === id;
       }).rowByPosition(0);
-        m('.span8','course', data);
-        $('.span3').empty();                
+        m('.main','course', data);
       }
     })   
 });
