@@ -1,11 +1,14 @@
 <script id="course" type="text/html">
-  &larr; <a href="">Vastuvõtt</a>
+  &larr; <a href="./">Vastuvõtt</a>
   <h3>{{title}}</h3>
   <div class="row">
-    <div class="span8">
+    <div id="description" class="span4">
       {{description_long}}
     </div>
-    <div class="span4">
+    <div id="image" class="span4">
+      <img src="./images/{{id}}.png" />
+    </div>
+    <div id="video" class="span4">
       {{{video}}}
     </div>
   </div>
